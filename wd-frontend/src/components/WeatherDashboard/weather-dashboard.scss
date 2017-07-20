@@ -1,0 +1,13 @@
+.wd-weather-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  .wd-weather-widget {
+    margin: 20px;
+
+    .wd-widget-header {
+      background-color: #D8E2DC;
+    }
+  }
+}

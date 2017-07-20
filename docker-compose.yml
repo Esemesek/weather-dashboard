@@ -1,0 +1,15 @@
+version: "3.2"
+services:
+  wd-backend:
+    build: wd-backend
+    command: yarn start
+    ports: 
+      - "9000:9000"
+    volumes:
+      - ./wd-backend:/weather_dashboard
+  wd-frontend:
+    build: wd-frontend
+    ports:
+      - "80:80"
+    volumes:
+      - ./wd-frontend/www:/opt/weather_dashboard/www

@@ -1,0 +1,26 @@
+{
+  "name": "wd-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node --presets env,stage-2",
+    "build": "babel src -d build/dist"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2",
+    "nodemon": "^1.11.0",
+    "nyc": "^11.0.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "node-fetch": "^1.7.1",
+    "winston": "^2.3.1"
+  }
+}

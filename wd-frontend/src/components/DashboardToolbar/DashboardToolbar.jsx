@@ -1,5 +1,3 @@
-import './dashboard-toolbar.scss';
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
@@ -8,6 +6,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import AutoComplete from 'material-ui/AutoComplete';
 
 import { fetchCities } from '../../actions/autocomplete';
+import { addWidget } from '../../actions/widget';
 
 export class DashboardToolbar extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ export class DashboardToolbar extends Component {
   }
 
   handleAddWidget = () => {
-    console.log(this.state.cityName);
+    this.props.addWidget(this.state.cityName);
     this.setState({ cityName: ''});
   }
 
@@ -35,7 +34,8 @@ export class DashboardToolbar extends Component {
           hintText='Type city...'
           dataSource={this.props.cities}
           searchText={this.state.cityName}
-          onUpdateInput={this.handleUpdateInput}/>
+          onUpdateInput={this.handleUpdateInput}
+          maxSearchResults={10}/>
         <FloatingActionButton
           mini={true}
           onClick={this.handleAddWidget}>
@@ -52,6 +52,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   citiesCompletion: (search) => dispatch(fetchCities(search)),
+  addWidget: (name) => dispatch(addWidget(name)), 
 });
 
 export default connect(

@@ -16,19 +16,11 @@ const fetchCitiesSuccess = (response) => ({
   response,
 });
 
-const cities = [
-  'Wrocław',
-  'Świdnica',
-  'Warszawa',
-  'Poznań',
-  'Kalisz',
-  'Jelenia Góra',
-];
-
 export const fetchCities = (query) => (dispatch) => {
   dispatch(fetchCitiesRequest());
 
-  return dispatch(fetchCitiesSuccess(
-    cities.filter(c => c.includes(query)),
-  ));
+  return fetch(`/server/city/autocomplete/${query}`)
+    .then(res => res.json())
+    .then(json => dispatch(fetchCitiesSuccess(json)))
+    .catch(err => dispatch(fetchCitiesFailure(err)));
 }
