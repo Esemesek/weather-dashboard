@@ -1,12 +1,22 @@
+import uuid from 'uuid/v4';
+
 import {
   ADD_WIDGET_REQUEST,
   ADD_WIDGET_FAILURE,
   ADD_WIDGET_SUCCESS,
+  REMOVE_WIDGET,
 } from '../actions/widget';
 
 const DEFAULT_STATE = {
   widgets: []
 };
+
+const makeWidgetFromResponse = (response) => ({
+  id: uuid(),
+  ...response,
+});
+
+const filterWidget = (widgets, id) => widgets.filter(widget => widget.id !== id);
 
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
@@ -30,7 +40,14 @@ export default (state = DEFAULT_STATE, action) => {
           isFetching: false,
           success: true,
         },
-        widgets: [...state.widgets, action.response],
+        widgets: [
+          ...state.widgets,
+          makeWidgetFromResponse(action.response),
+        ],
+      });
+    case REMOVE_WIDGET:
+      return Object.assign({}, state, {
+        widgets: filterWidget(state.widgets, action.id),
       });
     default:
       return state;

@@ -19,6 +19,11 @@ const addWidgetSuccess = (response) => ({
   response,
 });
 
+export const removeWidget = (id) => ({
+  type: REMOVE_WIDGET,
+  id,
+});
+
 export const addWidget = (city) => (dispatch) => {
   dispatch(addWidgetRequest());
 

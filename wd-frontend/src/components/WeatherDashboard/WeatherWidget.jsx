@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import Refresh from 'material-ui/svg-icons/action/cached';
 import Delete from 'material-ui/svg-icons/action/delete';
 import IconButton from 'material-ui/IconButton';
 
-export default class WeatherWidget extends Component {
+import { removeWidget } from '../../actions/widget';
+
+class WeatherWidget extends Component {
+  removeWidget = () => {
+    this.props.deleteWidget(this.props.widget.id);
+  }
+
   render() {
     return (
       <Card className='wd-weather-widget'>
@@ -22,7 +29,11 @@ export default class WeatherWidget extends Component {
           <IconButton tooltip='Refresh' tooltipPosition='top-center' touch={true}>
             <Refresh/>
           </IconButton>
-          <IconButton tooltip='Delete' tooltipPosition='top-center' touch={true}>
+          <IconButton
+            tooltip='Delete'
+            tooltipPosition='top-center'
+            touch={true}
+            onClick={this.removeWidget}>
             <Delete/>
           </IconButton>
         </CardActions>
@@ -30,3 +41,12 @@ export default class WeatherWidget extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  deleteWidget: id => dispatch(removeWidget(id)),
+});
+
+export default connect(
+  undefined,
+  mapDispatchToProps,
+)(WeatherWidget);
