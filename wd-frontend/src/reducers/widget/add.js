@@ -1,11 +1,11 @@
 import uuid from 'uuid/v4';
 
-const makeWidgetFromResponse = (response) => ({
+const makeWidgetFromResponse = response => ({
   id: uuid(),
   ...response,
 });
 
-export const addWidgetRequest = (state) =>
+export const addWidgetRequest = state =>
   Object.assign({}, state, {
     addStatus: {
       isFetching: true,

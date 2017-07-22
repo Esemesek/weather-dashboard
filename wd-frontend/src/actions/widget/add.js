@@ -6,21 +6,21 @@ const addWidgetRequest = () => ({
   type: ADD_WIDGET_REQUEST,
 });
 
-const addWidgetFailure = (error) => ({
+const addWidgetFailure = error => ({
   type: ADD_WIDGET_FAILURE,
   error,
 });
 
-const addWidgetSuccess = (response) => ({
+const addWidgetSuccess = response => ({
   type: ADD_WIDGET_SUCCESS,
   response,
 });
 
-export const addWidget = (city) => (dispatch) => {
+export const addWidget = city => (dispatch) => {
   dispatch(addWidgetRequest());
 
   return fetch(`/server/weather/${city}`)
     .then(res => res.json())
     .then(json => dispatch(addWidgetSuccess(json)))
     .catch(err => dispatch(addWidgetFailure(err)));
-}
+};

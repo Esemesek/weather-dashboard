@@ -1,10 +1,8 @@
-import uuid from 'uuid/v4';
-
 import * as widgetActions from '../../actions/widget';
 import * as addReductors from './add';
-import * as removeReductors from './remove';
 import * as refreshReductors from './refresh';
-import * as alertReductors from './alert';
+import removeReductors from './remove';
+import alertReductors from './alert';
 
 const DEFAULT_STATE = {
   alert: {
@@ -35,4 +33,4 @@ export default (state = DEFAULT_STATE, action) => {
     default:
       return state;
   }
-}
+};

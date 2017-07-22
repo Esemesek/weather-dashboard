@@ -5,7 +5,7 @@ import {
 } from '../actions/autocomplete';
 
 export default (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case FETCH_CITIES_REQUEST:
       return Object.assign({}, state, {
         autocompleteStatus: {
@@ -31,4 +31,4 @@ export default (state = {}, action) => {
     default:
       return state;
   }
-}
+};

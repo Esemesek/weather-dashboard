@@ -6,21 +6,21 @@ const fetchCitiesRequest = () => ({
   type: FETCH_CITIES_REQUEST,
 });
 
-const fetchCitiesFailure = (error) => ({
+const fetchCitiesFailure = error => ({
   type: FETCH_CITIES_FAILURE,
   error,
 });
 
-const fetchCitiesSuccess = (response) => ({
+const fetchCitiesSuccess = response => ({
   type: FETCH_CITIES_SUCCESS,
   response,
 });
 
-export const fetchCities = (query) => (dispatch) => {
+export const fetchCities = query => (dispatch) => {
   dispatch(fetchCitiesRequest());
 
   return fetch(`/server/city/autocomplete/${query}`)
     .then(res => res.json())
     .then(json => dispatch(fetchCitiesSuccess(json)))
     .catch(err => dispatch(fetchCitiesFailure(err)));
-}
+};

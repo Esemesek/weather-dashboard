@@ -1,13 +1,13 @@
 const refreshWidget = (widgets, id, response) =>
   widgets.map((widget) => {
     if (widget.id === id) {
-      widget = { id, ...response }
+      return { id, ...response };
     }
 
     return widget;
   });
 
-export const refreshWidgetRequest = (state) =>
+export const refreshWidgetRequest = state =>
   Object.assign({}, state, {
     refreshStatus: {
       isFetching: true,
