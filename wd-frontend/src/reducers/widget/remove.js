@@ -1,4 +1,4 @@
 export const removeWidget = (state, action) =>
   Object.assign({}, state, {
-    widgets: state.widgets.filter(widget => widget.id !== action.id),
+    list: state.list.filter(widget => widget.id !== action.id),
   });

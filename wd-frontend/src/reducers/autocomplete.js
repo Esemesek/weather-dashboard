@@ -8,19 +8,25 @@ export default (state = {}, action) => {
   switch(action.type) {
     case FETCH_CITIES_REQUEST:
       return Object.assign({}, state, {
-        isFetching: true,
+        autocompleteStatus: {
+          isFetching: true,
+        },
       });
     case FETCH_CITIES_FAILURE:
       return Object.assign({}, state, {
-        isFetching: false,
-        success: false,
-        error: action.error,
+        autocompleteStatus: {
+          isFetching: false,
+          success: false,
+          error: action.error,
+        },
       });
     case FETCH_CITIES_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: false,
-        success: true,
-        payload: action.response,
+        autocompleteStatus: {
+          isFetching: false,
+          success: true,
+        },
+        cities: action.response,
       });
     default:
       return state;

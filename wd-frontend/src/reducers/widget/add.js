@@ -17,7 +17,10 @@ export const addWidgetFailure = (state, action) =>
     addStatus: {
       isFetching: false,
       success: false,
-      error: action.error,
+    },
+    alert: {
+      open: true,
+      message: `Failure adding widget: ${action.error}`,
     },
   });
 
@@ -27,8 +30,12 @@ export const addWidgetSuccess = (state, action) =>
       isFetching: false,
       success: true,
     },
-    widgets: [
-      ...state.widgets,
+    alert: {
+      open: true,
+      message: `Success adding ${action.response.city} widget`,
+    },
+    list: [
+      ...state.list,
       makeWidgetFromResponse(action.response),
     ],
   });

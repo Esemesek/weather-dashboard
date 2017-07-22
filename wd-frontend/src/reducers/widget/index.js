@@ -4,9 +4,14 @@ import * as widgetActions from '../../actions/widget';
 import * as addReductors from './add';
 import * as removeReductors from './remove';
 import * as refreshReductors from './refresh';
+import * as alertReductors from './alert';
 
 const DEFAULT_STATE = {
-  widgets: []
+  alert: {
+    open: false,
+    message: '',
+  },
+  list: [],
 };
 
 export default (state = DEFAULT_STATE, action) => {
@@ -25,6 +30,8 @@ export default (state = DEFAULT_STATE, action) => {
       return refreshReductors.refreshWidgetSuccess(state, action);
     case widgetActions.REFRESH_WIDGET_FAILURE:
       return refreshReductors.refreshWidgetFailure(state, action);
+    case widgetActions.CLOSE_WIDGET_ALERT:
+      return alertReductors.closeWidgetAlert(state);
     default:
       return state;
   }

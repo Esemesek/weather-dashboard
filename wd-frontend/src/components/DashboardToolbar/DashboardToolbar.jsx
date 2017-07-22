@@ -47,7 +47,7 @@ export class DashboardToolbar extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cities: state.autocomplete.payload || [],
+  cities: state.autocomplete.cities || [],
 });
 
 const mapDispatchToProps = (dispatch) => ({

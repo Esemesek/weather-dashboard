@@ -20,7 +20,11 @@ export const refreshWidgetSuccess = (state, action) =>
       isFetching: false,
       success: true,
     },
-    widgets: refreshWidget(state.widgets, action.id, action.response),
+    alert: {
+      open: true,
+      message: 'Success refreshing widget',
+    },
+    widgets: refreshWidget(state.list, action.id, action.response),
   });
 
 export const refreshWidgetFailure = (state, action) =>
@@ -28,6 +32,9 @@ export const refreshWidgetFailure = (state, action) =>
     refreshStatus: {
       isFetching: false,
       success: false,
-      error: action.error,
+    },
+    alert: {
+      open: true,
+      message: `Failure in refreshing widget: ${action.error}`,
     },
   });
