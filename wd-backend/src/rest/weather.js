@@ -6,29 +6,37 @@ import Logger from '../logger';
 import CityService from '../service/cityService';
 import WeatherParserService from '../service/weatherParserService';
 
-const router = express.Router();
+class WeatherRouter {
+  static build = () => new WeatherRouter().router;
 
-const makeWeatherRequestUrl = (city) => `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${config.appId}`;
+  router = express.Router();
 
-const getWeather = (city) => 
-  fetch(makeWeatherRequestUrl(city))
-    .then(res => res.json())
-    .catch(err => {
-      throw new Error(err);
-    });
-
-router.get('/:city', async (request, response) => {
-  Logger.info(`Get weather for ${request.params.city}`);
-
-  try {
-    response.json(
-      WeatherParserService.parse(
-        await getWeather(request.params.city),
-      ),
-    );
-  } catch (e) {
-    response.sendStatus(503);
+  constructor() {
+    this.router.get('/:city', this.getWeatherForCity);
   }
-});
 
-export default router;
+  getWeatherForCity = async (request, response) => {
+    Logger.info(`Get weather for ${request.params.city}`);
+
+    try {
+      response.json(
+        WeatherParserService.parse(
+          await this.getWeather(request.params.city),
+        ),
+      );
+    } catch (e) {
+      response.sendStatus(503);
+    }
+  }
+
+  getWeather = city => 
+    fetch(this.makeWeatherRequestUrl(city))
+      .then(res => res.json())
+      .catch(err => {
+        throw new Error(err);
+      });
+
+  makeWeatherRequestUrl = city => `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${config.appId}`;
+}
+
+export default WeatherRouter.build();

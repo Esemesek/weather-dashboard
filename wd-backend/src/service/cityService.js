@@ -8,9 +8,9 @@ class CityService {
     this.cities = this.buildCityList();
   }
 
-  getCityByName = (name) => this.cities.find(city => city === name);
+  getCityByName = name => this.cities.find(city => city === name);
 
-  cityAutocomplete = (search) => this.cities.filter(city => city.includes(search));
+  cityAutocomplete = search => this.cities.filter(city => city.includes(search));
 
   buildCityList = () => {
     Logger.info('Building city list');
