@@ -24,7 +24,7 @@ export class WeatherDashboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  widgets: state.widget.list || [],
+  widgets: state.widget.list,
 });
 
 export default connect(

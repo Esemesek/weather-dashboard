@@ -21,8 +21,8 @@ export class WeatherDashboardAlert extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  open: state.widget.alert.open || false,
-  message: state.widget.alert.message || '',
+  open: state.widget.alert.open,
+  message: state.widget.alert.message,
 });
 
 const mapDispatchToProps = (dispatch) => ({
