@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: ['babel-polyfill', './src'],
@@ -17,7 +16,6 @@ module.exports = {
       'Promise': 'es6-promise',
       'fetch': 'exports?self.fetch!whatwg-fetch',
     }),
-    new ExtractTextPlugin('bundle.css'),
   ],
   module: {
     rules: [
@@ -32,10 +30,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ]
       }
     ]
   }

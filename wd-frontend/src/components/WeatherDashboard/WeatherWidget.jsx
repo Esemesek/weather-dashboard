@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
-import Refresh from 'material-ui/svg-icons/action/cached';
-import Delete from 'material-ui/svg-icons/action/delete';
-import IconButton from 'material-ui/IconButton';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 
-import { removeWidget } from '../../actions/widget';
+import WeatherWidgetActions from './WeatherWidgetActions';
 
-class WeatherWidget extends Component {
-  removeWidget = () => {
-    this.props.deleteWidget(this.props.widget.id);
-  }
-
+export default class WeatherWidget extends Component {
   render() {
     return (
       <Card className='wd-weather-widget'>
@@ -25,28 +18,10 @@ class WeatherWidget extends Component {
           <article>Humidity: {this.props.widget.humidity}</article>
           <article>Wind Speed: {this.props.widget.windSpeed}</article>
         </CardText>
-        <CardActions>
-          <IconButton tooltip='Refresh' tooltipPosition='top-center' touch={true}>
-            <Refresh/>
-          </IconButton>
-          <IconButton
-            tooltip='Delete'
-            tooltipPosition='top-center'
-            touch={true}
-            onClick={this.removeWidget}>
-            <Delete/>
-          </IconButton>
-        </CardActions>
+        <WeatherWidgetActions
+          id={this.props.widget.id}
+          city={this.props.widget.city}/>
       </Card>
     );
   }
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  deleteWidget: id => dispatch(removeWidget(id)),
-});
-
-export default connect(
-  undefined,
-  mapDispatchToProps,
-)(WeatherWidget);

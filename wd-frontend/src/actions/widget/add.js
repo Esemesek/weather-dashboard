@@ -1,6 +1,3 @@
-export const REMOVE_WIDGET = 'REMOVE_WIDGET';
-export const REFRESH_WIDGET = 'REFRESH_WIDGET';
-
 export const ADD_WIDGET_REQUEST = 'ADD_WIDGET_REQUEST';
 export const ADD_WIDGET_FAILURE = 'ADD_WIDGET_FAILURE';
 export const ADD_WIDGET_SUCCESS = 'ADD_WIDGET_SUCCESS';
@@ -17,11 +14,6 @@ const addWidgetFailure = (error) => ({
 const addWidgetSuccess = (response) => ({
   type: ADD_WIDGET_SUCCESS,
   response,
-});
-
-export const removeWidget = (id) => ({
-  type: REMOVE_WIDGET,
-  id,
 });
 
 export const addWidget = (city) => (dispatch) => {
