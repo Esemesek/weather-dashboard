@@ -4,11 +4,12 @@ import Logger from '../logger';
 import CityService from '../service/cityService';
 
 class CityRouter {
-  static build = () => new CityRouter().router;
+  static build = cityService => new CityRouter(cityService);
 
   router = express.Router();
 
-  constructor() {
+  constructor(cityService) {
+    this.cityService = cityService;
     this.router.get('/autocomplete/:city', this.getAutocompleteCity);
   }
 
@@ -18,4 +19,4 @@ class CityRouter {
   }
 }
 
-export default CityRouter.build();
+export default CityRouter.build(CityService);

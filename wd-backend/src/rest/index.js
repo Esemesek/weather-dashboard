@@ -5,7 +5,7 @@ import weatherRouter from './weather';
 
 const router = express.Router();
 
-router.use('/city', cityRouter);
-router.use('/weather', weatherRouter);
+router.use('/city', cityRouter.router);
+router.use('/weather', weatherRouter.router);
 
 export default router;
