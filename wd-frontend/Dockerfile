@@ -11,7 +11,7 @@ COPY . /weather_dashboard
 COPY ./config/nginx.conf /etc/nginx
 
 RUN npm install \
-    && npm build \
+    && npm run build \
     && mkdir -p /opt/weather_dashboard \
     && cp -r www /opt/weather_dashboard
 
