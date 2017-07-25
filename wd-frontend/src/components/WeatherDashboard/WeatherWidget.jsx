@@ -28,10 +28,10 @@ export default class WeatherWidget extends Component {
           title={widget.city}
           subtitle={widget.name}/>
         <CardText>
-          <article>Temperature: {widget.temperature}</article>
-          <article>Pressure: {widget.pressure}</article>
-          <article>Humidity: {widget.humidity}</article>
-          <article>Wind Speed: {widget.windSpeed}</article>
+          <article>Temperature: {widget.temperature} K</article>
+          <article>Pressure: {widget.pressure} hPa</article>
+          <article>Humidity: {widget.humidity} %</article>
+          <article>Wind Speed: {widget.windSpeed} m/s</article>
         </CardText>
         <WeatherWidgetActions
           id={widget.id}
