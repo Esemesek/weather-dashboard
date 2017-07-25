@@ -13,6 +13,7 @@ import {
 const CITY_NAME = 'SomeCity';
 const AUTOCOMPLETE_URL = `/server/city/autocomplete/${CITY_NAME}`;
 const CITY_LIST = ['Wroclaw', 'Swidnica'];
+const ERROR = 'error';
 const mockStore = configureMockStore([thunk]);
 
 describe('Autocomplete actions', () => {
@@ -20,7 +21,7 @@ describe('Autocomplete actions', () => {
     fetchMock.restore();
   });
 
-  it('should successfully dipatch actions', () => {
+  it('should dipatch success actions', () => {
     fetchMock.get(AUTOCOMPLETE_URL, CITY_LIST)
 
     const expectedActions = [
@@ -28,7 +29,7 @@ describe('Autocomplete actions', () => {
       { type: FETCH_CITIES_SUCCESS, response: CITY_LIST },
     ];
 
-    const store = mockStore({ cities: [] });
+    const store = mockStore();
 
     return store.dispatch(fetchCities(CITY_NAME)).then(() => {
       expect(store.getActions()).to.be.deep.equal(expectedActions);
@@ -38,15 +39,15 @@ describe('Autocomplete actions', () => {
   it('should dispatch failure actions', () => {
     fetchMock.get(AUTOCOMPLETE_URL, {
       status: 500,
-      throws: 'error',
+      throws: ERROR,
     });
 
     const expectedActions = [
       { type: FETCH_CITIES_REQUEST },
-      { type: FETCH_CITIES_FAILURE, error: 'error' },
+      { type: FETCH_CITIES_FAILURE, error: ERROR },
     ];
 
-    const store = mockStore({ cities: [] });
+    const store = mockStore();
 
     return store.dispatch(fetchCities(CITY_NAME)).then(() => {
       expect(store.getActions()).to.be.deep.equal(expectedActions);
