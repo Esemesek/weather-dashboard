@@ -4,7 +4,11 @@ import {
   FETCH_CITIES_SUCCESS,
 } from '../actions/autocomplete';
 
-export default (state = {}, action) => {
+const DEFAULT_STATE = {
+  cities: [],
+};
+
+export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case FETCH_CITIES_REQUEST:
       return Object.assign({}, state, {

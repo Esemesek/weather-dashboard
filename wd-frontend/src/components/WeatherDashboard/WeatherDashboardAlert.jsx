@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Snackbar from 'material-ui/Snackbar';
+import PropTypes from 'prop-types';
 
 import { closeWidgetAlert } from '../../actions/widget';
 
 export class WeatherDashboardAlert extends Component {
-  handleCloseRequest = () => {
-    this.props.closeAlert();
-  }
+  static propTypes = {
+    open: PropTypes.bool.isRequired,
+    message: PropTypes.string.isRequired,
+    closeAlert: PropTypes.func.isRequired,
+  };
 
   render() {
     return (
       <Snackbar
         open={this.props.open}
         message={this.props.message}
-        autoHideDuration={2000}
+        autoHideDuration={4000}
         onRequestClose={this.handleCloseRequest}/>
     );
+  }
+
+  handleCloseRequest = () => {
+    this.props.closeAlert();
   }
 }
 

@@ -4,17 +4,17 @@ import IconButton from 'material-ui/IconButton';
 import Refresh from 'material-ui/svg-icons/action/cached';
 import Delete from 'material-ui/svg-icons/action/delete';
 import { CardActions } from 'material-ui/Card';
+import PropTypes from 'prop-types';
 
 import { removeWidget, refreshWidget } from '../../actions/widget';
 
 export class WeatherWidgetActions extends Component {
-  removeWidget = () => {
-    this.props.remove(this.props.id);
-  }
-
-  refreshWidget = () => {
-    this.props.refresh(this.props.id, this.props.city);
-  }
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    remove: PropTypes.func.isRequired,
+    refresh: PropTypes.func.isRequired,
+  };
 
   render() {
     return (
@@ -35,6 +35,14 @@ export class WeatherWidgetActions extends Component {
         </IconButton>
       </CardActions>
     );
+  }
+
+  removeWidget = () => {
+    this.props.remove(this.props.id);
+  }
+
+  refreshWidget = () => {
+    this.props.refresh(this.props.id, this.props.city);
   }
 }
 
